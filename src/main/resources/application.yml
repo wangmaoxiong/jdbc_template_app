@@ -1,6 +1,9 @@
-
-#数据源配置
 spring:
+  profiles:
+    active: oracleDb #指定切换哪一个环境
+---
+spring:
+  profiles: mysqlDb
   datasource:
     username: root
     password: root
@@ -9,3 +12,13 @@ spring:
     #高版本 Mysql 驱动时，配置的 driver-class-name 不再是 com.mysql.jdbc.Driver，url 后面必须设置时区 serverTimezone
     url: jdbc:mysql://127.0.0.1:3306/test?characterEncoding=UTF-8&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+---
+#数据源配置
+spring:
+  profiles: oracleDb
+  datasource:
+    username: hnbs_3
+    password: 1
+    driverClassName: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@127.0.0.1:1521/orcl?useUnicode=true&characterEncoding=utf8

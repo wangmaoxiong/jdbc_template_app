@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 
 /**
  * @author wangmaoxiong
+ * MySQL 数据库的查询操作
  */
 @RestController
 public class PersonController2 {

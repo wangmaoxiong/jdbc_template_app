@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 
 /**
  * @author wangmaoxoing
+ * mysql 数据库增删改操作
  */
 @RestController
 public class PersonController {
