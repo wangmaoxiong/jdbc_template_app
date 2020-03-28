@@ -21,4 +21,4 @@ spring:
     username: hnbs_3
     password: 1
     driverClassName: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@127.0.0.1:1521/orcl?useUnicode=true&characterEncoding=utf8
+    url: jdbc:oracle:thin:@127.0.0.1:1521:ORCL

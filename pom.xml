@@ -21,26 +21,29 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- 引入 Spring Data JPA-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>spring-boot-starter-data-jdbc</artifactId>
         </dependency>
 
-        <!--https://mvnrepository.com/artifact/com.oracle.ojdbc/ojdbc8-->
-        <dependency>
-            <groupId>com.oracle.ojdbc</groupId>
+        <!-- https://mvnrepository.com/artifact/com.github.noraui/ojdbc8 -->
+        <!--这是网络上的雷锋提供的开源 ojdbc8 驱动，功能与官网的是一样的，专门用于替代 Oracle 官网 maven 下载失败-->
+       <!-- <dependency>
+            <groupId>com.github.noraui</groupId>
             <artifactId>ojdbc8</artifactId>
-            <scope>runtime</scope>
-            <version>19.3.0.0</version>
-        </dependency>
+            <version>12.2.0.1</version>
+        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/com.oracle.jdbc/ojdbc8 -->
+        <!-- oracle 官网提供的驱动依赖，匹配 jdk 1.8，下载失败时，需要手动在本地仓库进行 mvn install 安装-->
+         <dependency>
+             <groupId>com.oracle.jdbc</groupId>
+             <artifactId>ojdbc8</artifactId>
+             <version>12.2.0.1</version>
+         </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
