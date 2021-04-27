@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -61,6 +62,34 @@ public class PersonController2 {
             logger.warning("查询的 pId 不存在：" + pId);
         }
         return sql + " ===> " + name;
+    }
+
+    /**
+     * 根据 pId 列表批量查询数据，注意 in 参数的占位符 ? 个数必须与 参数个数对应
+     *
+     * @param pIdList
+     * @return
+     */
+    @GetMapping("person/findNameByIds")
+    public String findNameByIds(@RequestBody List<String> pIdList ) {
+        StringBuffer questionMark = new StringBuffer();
+        for (int i = 0; i < pIdList.size(); i++) {
+            if (i != pIdList.size() - 1) {
+                questionMark.append("?,");
+            } else {
+                questionMark.append("?");
+            }
+        }
+        String sql = "SELECT pName FROM PERSON WHERE pId in (" + questionMark.toString() + ")";
+
+        Object[] param = pIdList.toArray();
+        List<Map<String, Object>> dataList = null;
+        try {
+            dataList = jdbcTemplate.queryForList(sql, param);
+        } catch (Exception e) {
+            logger.warning("查询的 pIdList 不存在：" + pIdList);
+        }
+        return sql + " ===> " + dataList.toArray();
     }
 
     /**
